@@ -13,3 +13,24 @@ if num_participants <= 0:
     exit()
 
 
+participants = []
+print("\n--- Register Participants ---")
+
+for i in range(num_participants):
+    name = input(f"Enter participant {i + 1} name: ").strip()
+    track = input(f"Enter chosen track for {name}: ").strip()
+    participants.append({"name": name, "track": track})
+
+
+print("\nRegistered Participants:")
+for idx, p in enumerate(participants, 1):
+    print(f"{idx}. {p['name']} - {p['track']}")
+
+
+unique_tracks = set(p["track"] for p in participants)
+print(f"\nTracks offered: {', '.join(sorted(unique_tracks))}")
+
+if len(unique_tracks) < 2:
+    print("Warning: Not enough track variety.")
+
+
