@@ -34,3 +34,25 @@ if len(unique_tracks) < 2:
     print("Warning: Not enough track variety.")
 
 
+seen = set()
+duplicates = set()
+for p in participants:
+    if p["name"] in seen:
+        duplicates.add(p["name"])
+    else:
+        seen.add(p["name"])
+
+if duplicates:
+    print(f"\nDuplicate name(s): {', '.join(duplicates)}")
+else:
+    print("\nNo duplicate names found.")
+
+
+from collections import defaultdict
+summary = defaultdict(int)
+for p in participants:
+    summary[p["track"]] += 1
+
+print("\nParticipants per track:")
+for track in sorted(summary):
+    print(f"{track}: {summary[track]}")
